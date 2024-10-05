@@ -1,9 +1,27 @@
-/* General Styles */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+
+/* Root variables */
+:root {
+  /* Primary Colors */
+  --primary-dark-blue: #173F5F;
+  --primary-blue: #20639B;
+  --primary-teal: #3CAEA3;
+  /* Accent Colors */
+  --accent-yellow: #F6D55C;
+  --accent-orange-red: #ED553B;
+  /* Neutral / Grey Palette */
+  --neutral-dark-grey: #2F2F2F;
+  --neutral-medium-grey: #6C757D;
+  --neutral-light-grey: #D6D6D6;
+  --neutral-off-white: #F7F7F7;
+  --neutral-white: #FFFFFF;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
-  background-color: white;
+  font-family: "Fredoka", sans-serif;
+  background-color: var(--neutral-off-white);
 }
 
 /* Navbar Styles */
@@ -12,11 +30,11 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  color: red;
+  color: var(--accent-orange-red);
 }
 
 .navbar .logo {
-  color: red;
+  color: var(--accent-orange-red);
   font-size: 24px;
   font-weight: bold;
 }
@@ -27,9 +45,25 @@ body {
 }
 
 .navbar .menu a {
-  color: red;
+  color: var(--accent-orange-red);
   text-decoration: none;
   font-size: 18px;
+}
+
+#taskDisplaySection {
+  width: 700px;
+  height: 550px;
+  border: 2px solid var (var(--accent-orange-red)); 
+  overflow: hidden; 
+  position: relative; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; 
+  padding: 20px; 
+  box-sizing: border-box; 
+  gap: 20px; 
+  border-radius: 12px;
+  margin: 0 auto;
 }
 
 .task-input-section {
@@ -38,17 +72,6 @@ body {
 
 .task-display-section {
   margin: 20px;
-}
-
-.task-square {
-  width: 100px;
-  height: 100px;
-  background-color: lightgray;
-  border: 1px solid black;
-  display: inline-block;
-  margin: 5px;
-  text-align: center;
-  line-height: 100px;
 }
 
 .task-box {
@@ -61,30 +84,30 @@ body {
 }
 
 .task-box.small {
-  width: 50px;
-  height: 50px;
-  background-color: lightgreen;
+  width: 100px;
+  height: 100px;
+  background-color: var(--primary-teal);
   border-radius: 6px;
 }
 
 .task-box.medium {
-  width: 100px;
-  height: 100px;
-  background-color: lightblue;
+  width: 150px;
+  height: 150px;
+  background-color: var(--accent-yellow);
   border-radius: 8px;
 }
 
 .task-box.large {
-  width: 150px;
-  height: 150px;
-  background-color: lightcoral;
+  width: 175px;
+  height: 175px;
+  background-color: var(--primary-blue);
   border-radius: 10px;
 }
 
 .task-box.priority {
     width: 200px;
     height: 200px;
-    background-color: rgb(193, 53, 35);
+    background-color: var(--accent-orange-red);
     border-radius: 12px;
   }
 
@@ -94,8 +117,8 @@ body {
   bottom: -30px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
+  background-color: var(--neutral-dark-grey);
+  color: var(--neutral-white);
   padding: 5px;
   border-radius: 5px;
   white-space: nowrap;
@@ -111,21 +134,34 @@ body {
   }
 }
 
+.btn-primary {
+  background-color: var(--accent-orange-red);
+  border: none;
+}
+
+.tick-button {
+  background-color: transparent;
+  color: var(--primary-dark-blue);
+  border-color: transparent;
+  left: 10px;
+  position: relative;
+}
+
 /* Footer Styles */
 .footer {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px 0;
-  color: black;
+  color: var(--neutral-dark-grey);
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: white;
+  background-color: var(--neutral-off-white);
 }
 
 .footer .github-icon {
-  color: red;
+  color: var(--accent-orange-red);
   font-size: 24px;
   text-decoration: none;
 }

@@ -4,6 +4,7 @@ let currentTaskBox = null;
 window.addEventListener('load', function() {
     const taskDisplaySection = document.getElementById('taskDisplaySection');
     const tasks = JSON.parse(sessionStorage.getItem('tasks')) || [];
+
     tasks.forEach(task => {
         if (!task.deleted) {
             const taskBox = createTaskBox(task.text, task.size, task.comment, task.completed, task.deleted);
@@ -12,6 +13,7 @@ window.addEventListener('load', function() {
     });
 });
 
+// Save new task and append it to the taskDisplaySection
 document.getElementById('saveTaskButton').addEventListener('click', function() {
     const taskInput = document.getElementById('taskInput');
     const taskSize = document.getElementById('taskSize').value;
@@ -30,22 +32,27 @@ document.getElementById('saveTaskButton').addEventListener('click', function() {
     }
 });
 
+// Save comment to the current task box and session storage
 document.getElementById('saveCommentButton').addEventListener('click', function() {
     const taskComment = document.getElementById('taskComment').value;
+
     if (currentTaskBox) {
+        // Set the comment on the current task box element
         currentTaskBox.setAttribute('data-comment', taskComment);
         $('#commentModal').modal('hide');
 
-        // Update comment in session storage
+        // Retrieve tasks from session storage and update the correct one
         const tasks = JSON.parse(sessionStorage.getItem('tasks')) || [];
         const taskIndex = tasks.findIndex(t => t.text === currentTaskBox.textContent && t.size === currentTaskBox.className.split(' ').pop());
+
         if (taskIndex > -1) {
             tasks[taskIndex].comment = taskComment;
-            sessionStorage.setItem('tasks', JSON.stringify(tasks));
+            sessionStorage.setItem('tasks', JSON.stringify(tasks)); // Update session storage
         }
     }
 });
 
+// Function to create a task box
 function createTaskBox(text, size, comment, completed, deleted) {
     const taskDisplaySection = document.getElementById('taskDisplaySection');
     const existingTasks = taskDisplaySection.getElementsByClassName('task-box ' + size);
@@ -82,7 +89,7 @@ function createTaskBox(text, size, comment, completed, deleted) {
         if (taskIndex > -1) {
             tasks[taskIndex].completed = true;
             tasks[taskIndex].deleted = true;
-            sessionStorage.setItem('tasks', JSON.stringify(tasks));
+            sessionStorage.setItem('tasks', JSON.stringify(tasks)); // Update session storage
         }
 
         // Remove task box from DOM
@@ -99,6 +106,7 @@ function createTaskBox(text, size, comment, completed, deleted) {
     return taskBox;
 }
 
+// Function to show confetti effect
 function showConfetti() {
     confetti({
         particleCount: 100,

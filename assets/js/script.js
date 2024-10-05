@@ -5,16 +5,10 @@ window.addEventListener('load', function() {
     const taskDisplaySection = document.getElementById('taskDisplaySection');
     const tasks = JSON.parse(sessionStorage.getItem('tasks')) || [];
     tasks.forEach(task => {
-        const taskBox = document.createElement('div');
-        taskBox.className = 'task-box ' + task.size;
-        taskBox.textContent = task.text;
-        taskBox.setAttribute('data-comment', task.comment);
-        taskBox.addEventListener('click', function() {
-            currentTaskBox = taskBox;
-            document.getElementById('taskComment').value = taskBox.getAttribute('data-comment'); // Load the comment into the input field
-            $('#commentModal').modal('show');
-        });
-        taskDisplaySection.appendChild(taskBox);
+        if (!task.deleted) {
+            const taskBox = createTaskBox(task.text, task.size, task.comment, task.completed, task.deleted);
+            taskDisplaySection.appendChild(taskBox);
+        }
     });
 });
 
@@ -24,20 +18,12 @@ document.getElementById('saveTaskButton').addEventListener('click', function() {
     const taskDisplaySection = document.getElementById('taskDisplaySection');
 
     if (taskInput.value.trim() !== '') {
-        const taskBox = document.createElement('div');
-        taskBox.className = 'task-box ' + taskSize;
-        taskBox.textContent = taskInput.value;
-        taskBox.setAttribute('data-comment', '');
-        taskBox.addEventListener('click', function() {
-            currentTaskBox = taskBox;
-            document.getElementById('taskComment').value = ''; // Clear the comment input field
-            $('#commentModal').modal('show');
-        });
+        const taskBox = createTaskBox(taskInput.value, taskSize, '', false, false);
         taskDisplaySection.appendChild(taskBox);
 
         // Save task to session storage
         const tasks = JSON.parse(sessionStorage.getItem('tasks')) || [];
-        tasks.push({ text: taskInput.value, size: taskSize, comment: '' });
+        tasks.push({ text: taskInput.value, size: taskSize, comment: '', completed: false, deleted: false });
         sessionStorage.setItem('tasks', JSON.stringify(tasks));
 
         taskInput.value = ''; // Clear the input field
@@ -52,10 +38,55 @@ document.getElementById('saveCommentButton').addEventListener('click', function(
 
         // Update comment in session storage
         const tasks = JSON.parse(sessionStorage.getItem('tasks')) || [];
-        const taskIndex = Array.from(currentTaskBox.parentNode.children).indexOf(currentTaskBox);
+        const taskIndex = tasks.findIndex(t => t.text === currentTaskBox.textContent && t.size === currentTaskBox.className.split(' ').pop());
         if (taskIndex > -1) {
             tasks[taskIndex].comment = taskComment;
             sessionStorage.setItem('tasks', JSON.stringify(tasks));
         }
     }
 });
+
+function createTaskBox(text, size, comment, completed, deleted) {
+    const taskBox = document.createElement('div');
+    taskBox.className = 'task-box ' + size;
+    taskBox.textContent = text;
+    taskBox.setAttribute('data-comment', comment);
+
+    // Create tick button
+    const tickButton = document.createElement('button');
+    tickButton.textContent = '✔';
+    tickButton.className = 'tick-button';
+    tickButton.addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevent triggering the task box click event
+        showConfetti(); // Trigger confetti effect
+
+        // Mark task as completed and deleted in session storage
+        const tasks = JSON.parse(sessionStorage.getItem('tasks')) || [];
+        const taskIndex = tasks.findIndex(t => t.text === text && t.size === size);
+        if (taskIndex > -1) {
+            tasks[taskIndex].completed = true;
+            tasks[taskIndex].deleted = true;
+            sessionStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        // Remove task box from DOM
+        taskBox.remove();
+    });
+    taskBox.appendChild(tickButton);
+
+    taskBox.addEventListener('click', function() {
+        currentTaskBox = taskBox;
+        document.getElementById('taskComment').value = taskBox.getAttribute('data-comment'); // Load the comment into the input field
+        $('#commentModal').modal('show');
+    });
+
+    return taskBox;
+}
+
+function showConfetti() {
+    confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
+}

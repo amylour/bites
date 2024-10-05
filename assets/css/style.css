@@ -111,18 +111,6 @@ body {
   }
 }
 
-@keyframes confettiFly {
-    0% {
-        transform: translate(0, 0);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(calc(var(--target-x) - var(--start-x)), calc(var(--target-y) - var(--start-y)));
-        opacity: 0;
-    }
-}
-
-
 /* Footer Styles */
 .footer {
   display: flex;

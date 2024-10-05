@@ -55,7 +55,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 10px;
+  margin: 0 20px;
   animation: hoverUpDown 2s ease-in-out infinite;
   position: relative;
 }
@@ -81,6 +81,13 @@ body {
   border-radius: 10px;
 }
 
+.task-box.priority {
+    width: 200px;
+    height: 200px;
+    background-color: rgb(193, 53, 35);
+    border-radius: 12px;
+  }
+
 .task-box:hover::after {
   content: attr(data-comment);
   position: absolute;
@@ -103,6 +110,18 @@ body {
     transform: translateY(-10px);
   }
 }
+
+@keyframes confettiFly {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(var(--target-x) - var(--start-x)), calc(var(--target-y) - var(--start-y)));
+        opacity: 0;
+    }
+}
+
 
 /* Footer Styles */
 .footer {

@@ -87,34 +87,38 @@ body {
   width: 100px;
   height: 100px;
   background-color: var(--primary-teal);
-  border-radius: 6px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .task-box.medium {
   width: 150px;
   height: 150px;
   background-color: var(--accent-yellow);
-  border-radius: 8px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .task-box.large {
   width: 175px;
   height: 175px;
   background-color: var(--primary-blue);
-  border-radius: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .task-box.priority {
-    width: 200px;
-    height: 200px;
-    background-color: var(--accent-orange-red);
-    border-radius: 12px;
-  }
+  width: 200px;
+  height: 200px;
+  background-color: var(--accent-orange-red);
+  border-radius: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
 
 .task-box:hover::after {
   content: attr(data-comment);
   position: absolute;
-  bottom: -30px;
+  bottom: -40px;
   left: 50%;
   transform: translateX(-50%);
   background-color: var(--neutral-dark-grey);
@@ -136,6 +140,11 @@ body {
 
 .btn-primary {
   background-color: var(--accent-orange-red);
+  border: none;
+}
+
+.btn-primary:focus {
+  background-color: var(--primary-dark-blue);
   border: none;
 }
 

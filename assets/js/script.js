@@ -47,6 +47,22 @@ document.getElementById('saveCommentButton').addEventListener('click', function(
 });
 
 function createTaskBox(text, size, comment, completed, deleted) {
+    const taskDisplaySection = document.getElementById('taskDisplaySection');
+    const existingTasks = taskDisplaySection.getElementsByClassName('task-box ' + size);
+
+    // Restrict the number of tasks based on size
+    const sizeLimits = {
+        'priority': 1,
+        'small': 2,
+        'medium': 2,
+        'large': 1
+    };
+
+    if (existingTasks.length >= sizeLimits[size]) {
+        alert(`You can only have ${sizeLimits[size]} ${size} task(s).`);
+        return null;
+    }
+
     const taskBox = document.createElement('div');
     taskBox.className = 'task-box ' + size;
     taskBox.textContent = text;

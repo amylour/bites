@@ -143,6 +143,28 @@ body {
   background-color: var(--accent-orange-red);
   border-radius: 14px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  animation: shake 1s infinite; 
+}
+
+@keyframes shake {
+  0%, 10% {
+    transform: rotate(0deg); /* Starting position */
+  }
+  25% {
+    transform: rotate(-5deg); /* Start shake */
+  }
+  50% {
+    transform: rotate(5deg); /* Continue shake */
+  }
+  75% {
+    transform: rotate(-5deg); /* Continue shake */
+  }
+  90% {
+    transform: rotate(0deg); /* Return to original position */
+  }
+  100% {
+    transform: rotate(0deg); /* Pause at the end */
+  }
 }
 
 @keyframes hoverUpDown {

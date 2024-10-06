@@ -35,7 +35,7 @@ body {
 
 .navbar .logo {
   color: var(--accent-orange-red);
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
 }
 
@@ -117,7 +117,7 @@ body {
   width: 100px;
   height: 100px;
   background-color: var(--primary-teal);
-  border-radius: 8px;
+  border-radius: 14px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -125,7 +125,7 @@ body {
   width: 150px;
   height: 150px;
   background-color: var(--accent-yellow);
-  border-radius: 10px;
+  border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -133,7 +133,7 @@ body {
   width: 175px;
   height: 175px;
   background-color: var(--primary-blue);
-  border-radius: 12px;
+  border-radius: 18px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -141,7 +141,7 @@ body {
   width: 200px;
   height: 200px;
   background-color: var(--accent-orange-red);
-  border-radius: 14px;
+  border-radius: 22px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   animation: shake 1s infinite; 
   will-change: transform;

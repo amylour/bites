@@ -46,7 +46,52 @@ function createTaskBox(text, size, completed, deleted) {
     };
 
     if (existingTasks.length >= sizeLimits[size]) {
-        alert(`You only need ${sizeLimits[size]} ${size} task(s) right now. Try clearing some tasks before adding more.`);
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        modal.style.display = 'flex';
+        modal.style.justifyContent = 'center';
+        modal.style.alignItems = 'center';
+        modal.style.zIndex = '1000';
+
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-content';
+        modalContent.style.backgroundColor = '#fff';
+        modalContent.style.padding = '20px';
+        modalContent.style.borderRadius = '12px';
+        modalContent.style.textAlign = 'center';
+        modalContent.style.maxWidth = '400px';
+        modalContent.style.width = '80%';
+
+        const alertText = document.createElement('p');
+        alertText.textContent = `You only need ${sizeLimits[size]} of those right now. Try clearing some tasks before adding more.`;
+        alertText.style.color = '#ED553B';
+        alertText.style.fontFamily = 'Fredoka, sans-serif';
+
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'No problemo!';
+        closeButton.style.marginTop = '10px';
+        closeButton.style.padding = '10px 20px';
+        closeButton.style.border = 'none';
+        closeButton.style.borderRadius = '5px';
+        closeButton.style.backgroundColor = '#ED553B';
+        closeButton.style.color = '#fff';
+        closeButton.style.cursor = 'pointer';
+
+        closeButton.addEventListener('click', function() {
+            modal.remove();
+        });
+
+        modalContent.appendChild(alertText);
+        modalContent.appendChild(closeButton);
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+
         return null;
     }
 

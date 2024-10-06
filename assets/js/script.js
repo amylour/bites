@@ -146,3 +146,27 @@ function showConfetti() {
         colors: ['#173F5F', '#20639B', '#3CAEA3', '#F6D55C', '#ED553B', '#6C757D'], // Custom colors
     });
 }
+
+function redirectToThankYou(event) {
+    event.preventDefault();
+    const form = event.target;
+    const spinner = document.getElementById('loadingSpinner');
+    spinner.style.display = 'block';
+    fetch(form.action, {
+      method: form.method,
+      body: new FormData(form),
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      spinner.style.display = 'none';
+      if (response.ok) {
+        window.location.href = 'thankyou.html';
+      } else {
+        alert('There was an issue with your submission. Please try again.');
+      }
+    }).catch(error => {
+      spinner.style.display = 'none';
+      alert('There was an issue with your submission. Please try again.');
+    });
+  }

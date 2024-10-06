@@ -10,7 +10,7 @@
   --accent-yellow: #F6D55C;
   --accent-orange-red: #ED553B;
   /* Neutral / Grey Palette */
-  --neutral-dark-grey: #2F2F2F;
+  --neutral-dark-grey: #242424;
   --neutral-medium-grey: #6C757D;
   --neutral-light-grey: #D6D6D6;
   --neutral-off-white: #F7F7F7;
@@ -165,12 +165,40 @@ body {
   border: none;
 }
 
+.btn-secondary {
+  background-color: var(--neutral-medium-grey);
+  border: none;
+}
+
+.btn-secondary:focus {
+  background-color: var(--neutral-dark-grey);
+  border: none;
+}
+
 .tick-button {
   background-color: transparent;
   color: var(--primary-dark-blue);
   border-color: transparent;
   left: 10px;
   position: relative;
+}
+
+.modal-content {
+  color: var(--accent-orange-red); 
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* span:hover, span:focus {
+  color: var(--accent-orange-red);
+} */
+
+.close:hover, .close:focus {
+  color: var(--accent-orange-red);
+}
+
+.punchline {
+  font-size: 1.25rem;
 }
 
 /* Footer Styles */

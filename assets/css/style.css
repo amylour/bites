@@ -37,6 +37,19 @@ body {
   color: var(--accent-orange-red);
   font-size: 30px;
   font-weight: bold;
+  text-decoration: none;
+}
+
+.bites {
+  color: var(--accent-orange-red);
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.bites:hover {
+  color: var(--accent-orange-red);
+  text-decoration: none;
 }
 
 .navbar .menu {
@@ -212,9 +225,9 @@ body {
   text-align: center;
 }
 
-/* span:hover, span:focus {
+.thanks {
   color: var(--accent-orange-red);
-} */
+}
 
 .close:hover, .close:focus {
   color: var(--accent-orange-red);

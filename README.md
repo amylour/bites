@@ -22,47 +22,6 @@ You can check out the deployed project [here](https://amylour.github.io/bites/).
 
 ## UX Design
 
-### Root Variables
-
-The application uses CSS root variables to maintain a consistent design and make it easier to update styles globally.
-
-#### `assets/css/styles.css`
-
-```css
-:root {
-    --primary-color: #ED553B;
-    --secondary-color: #fff;
-    --font-family: 'Fredoka, sans-serif';
-    --border-radius: 12px;
-    --modal-max-width: 400px;
-    --modal-padding: 20px;
-    --button-padding: 10px 20px;
-    --button-border-radius: 5px;
-}
-
-body {
-    font-family: var(--font-family);
-}
-
-.modal-content {
-    background-color: var(--secondary-color);
-    padding: var(--modal-padding);
-    border-radius: var(--border-radius);
-    text-align: center;
-    max-width: var(--modal-max-width);
-    width: 80%;
-}
-
-button {
-    margin-top: 10px;
-    padding: var(--button-padding);
-    border: none;
-    border-radius: var(--button-border-radius);
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    cursor: pointer;
-}
-```
 
 
 
